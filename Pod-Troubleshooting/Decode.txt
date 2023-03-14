@@ -1,0 +1,13 @@
+# Steps to decode a secret from a pod
+
+1.
+Kubectl get po -o yaml
+...
+find the certificate mounted as a volume (most likely)
+...
+
+2.
+echo <base64 K8s secret ca.crt> | base64 --decode > cert.crt
+
+3.
+openssl x509 -in certificate.crt -text -noout
